@@ -20,6 +20,5 @@ test('should click on the button', async ({page}) => {
     .click();
     await page.waitForTimeout(2000)
     await page
-    .locator('.heading')
-    .screenshot({ path: './test-results/screenshots/screenshot.png' });
+        .screenshot({ path: './tests/tests-results/screenshots/screenshot-1.png' });
 })
