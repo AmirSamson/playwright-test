@@ -10,7 +10,6 @@ test('should click on the button', async ({page}) => {
 
     await page.goto('https://web.fedshi.com/auth/login');
 
-
 // We can use the .getBy...() functions to fill-in the text boxes
 
        await page
