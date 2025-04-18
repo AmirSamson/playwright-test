@@ -33,5 +33,22 @@ test('should click on the button', async ({page}) => {
     .click();
     await page.waitForTimeout(2000)
     await page
-        .screenshot({ path: './tests/tests-results/screenshots/screenshot-1.png' });
+        .screenshot({ path: './tests/screenshots/screenshot-1.png' });
+    
+    //Using locators to take screen shots from a single element:
+    await page
+    .locator('text=تسجيل الدخول')
+    // .waitFor({state:'visible'})
+    .screenshot({path:'./tests/screenshots/screenshot-2.png'})
+
+
+    //Or if you or the Devs can insert "TestIds" in the code, add the following line and then find it using the `.locator`
+    //this way you are secured, in case the text is changed but the text-box/login-title is still there: 
+    //
+    //       <h2> data-testid="login-title">تسجيل الدخول   </h2>
+    //
+    // Now you can use the following in the `.locator`: 
+    //
+    //       await page.locator('[data-testid="login-title"]').screenshot({path: ''})
+
 })

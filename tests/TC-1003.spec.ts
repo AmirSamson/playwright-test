@@ -21,5 +21,5 @@ test('should click on the button', async ({page}) => {
     await page
     .getByRole('link', {name: 'ويبستور فدشي'})
     .click();
-
+    
 })
