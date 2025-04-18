@@ -33,13 +33,13 @@ test('should click on the button', async ({page}) => {
     .click();
     await page.waitForTimeout(2000)
     await page
-        .screenshot({ path: './tests/screenshots/screenshot-1.png' });
+        .screenshot({ path: './tests/screenshots/screenshot-1002-1.png' });
     
     //Using locators to take screen shots from a single element:
     await page
     .locator('text=تسجيل الدخول')
     // .waitFor({state:'visible'})
-    .screenshot({path:'./tests/screenshots/screenshot-2.png'})
+    .screenshot({path:'./tests/screenshots/screenshot-1002-2.png'})
 
 
     //Or if you or the Devs can insert "TestIds" in the code, add the following line and then find it using the `.locator`
