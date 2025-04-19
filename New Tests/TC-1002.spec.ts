@@ -14,7 +14,7 @@ test.use({
     baseURL: "https://fedshi.com"
 })
 
-test('should click on the button', async ({page}) => {
+test('Take screen shot using .locator()', async ({page}) => {
     const browser = chromium.launch({
         headless: false
     })
@@ -35,7 +35,7 @@ test('should click on the button', async ({page}) => {
     await page
         .screenshot({ path: './tests/screenshots/screenshot-1002-1.png' });
     
-    //Using locators to take screen shots from a single element:
+    //   We are using .locator() to take screen shots from a single element:
     await page
     .locator('text=تسجيل الدخول')
     // .waitFor({state:'visible'})

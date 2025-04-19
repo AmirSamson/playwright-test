@@ -15,7 +15,7 @@ test.use({
     baseURL: "https://fedshi.com"
 })
 
-test('should click on the button', async ({page}) => {
+test('navigate and expect URL: click on button', async ({page}) => {
     const browser = chromium.launch({
         headless: false
     })

@@ -6,7 +6,7 @@ import {expect, test, chromium } from "@playwright/test";
  * how to use it and how to fill the fileds/boxes where user is allowed to add input. 
  */
 
-test('should click on the button', async ({page}) => {
+test('fill() function using .locator() function', async ({page}) => {
 
     await page.goto('https://web.fedshi.com/auth/login');
 
