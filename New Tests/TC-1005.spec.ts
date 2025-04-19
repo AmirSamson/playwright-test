@@ -20,8 +20,8 @@ test('click on Continue button to setting password', async ({page}) => {
         .fill('9145678901')
 
     await page.getByRole('button', {name: 'استمر'}).click()
-    await page.waitForLoadState();
-    await page.getByRole('textbox').first().fill('12345678')
+    await page.waitForTimeout(1000)
+
     // await page.getByRole('button').filter({ hasText: /^$/ }).click();
     await page.getByRole('textbox').fill('12345678');
     await page.getByRole('button', { name: 'تسجيل الدخول' }).click();
@@ -31,3 +31,5 @@ test('click on Continue button to setting password', async ({page}) => {
     await page.screenshot({path: './screenshots/screenshot-1005-1.jpg'})
     
 })
+
+
