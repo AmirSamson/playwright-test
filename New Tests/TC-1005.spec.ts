@@ -29,4 +29,5 @@ test('click on Continue button to setting password', async ({page}) => {
     await expect(page).toHaveURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(3000)
     await page.screenshot({path: './screenshots/screenshot-1005-1.jpg'})
+    
 })
