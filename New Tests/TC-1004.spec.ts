@@ -11,12 +11,22 @@ test('using .fill() function using .getBy...()', async ({page}) => {
     await page.goto('https://web.fedshi.com/auth/login');
 
 // We can use the .getBy...() functions to fill-in the text boxes. For login fields which user has to input 
-
+// 
     await page
        .getByRole('textbox')
        .first()
        .fill('+98')
 
-    await page.getByPlaceholder('input[placeholder=711123456]').fill('9145678901')
+    // The reason that we are not using .getByPlaceholder() here is that the first textbox is not containing a placeholder. 
+    // Hence the code will not understand and recognize it. 
+    //          await page.getByPlaceholder('+964').first().fill('+98')
+
+
+    // Here we use the .getByPlaceholder() and put the place holder as "711 123 456"
+
+    await page
+        .getByPlaceholder('711 123 456')
+        .fill('9145678901')
+
     await page.close
 })
