@@ -7,7 +7,7 @@ import {expect, test, chromium } from "@playwright/test";
  * Using the Consts instead of repetitive .getByRole('button') and .getByRole('textbox')
  */
 
-test('click on Continue button to setting password', async ({page}) => {
+test('click on Continue button to setting password - using the Consts', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');

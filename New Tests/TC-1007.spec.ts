@@ -33,7 +33,12 @@ test('click on Continue button to setting password', async ({page}) => {
     
     //from here:
 
+    await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
+
     await page.getByLabel('text=سلة التسوق').isVisible()
-    await page.getByLabel('text=سلة التسوق').screenshot({path: './screenshots/screenshot-1007-1.jpg'})
+    await page.locator('[data-sentry-component="CartItemsEmptyState"]').screenshot({path: './screenshots/screenshot-1007-1.jpg'})
+    const productCard = page.locator('article:has-text("Test 4")');
+    await productCard.locator('button').first().click();
+    await page.waitForTimeout(4000)
 })
 
