@@ -29,7 +29,6 @@ test('click on Continue button to setting password', async ({page}) => {
     await textbox.fill('12345678');
     await buttonLoc.filter({ hasText: 'تسجيل الدخول' }).click();
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
-    await expect(page).toHaveURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
     
     //from here:
