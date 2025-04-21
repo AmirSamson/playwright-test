@@ -31,21 +31,18 @@ test('locate the add button on one specific product card and click on it', async
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
     
-    //from here:
+    //from here we'll add the consts and the if() func here to check for the Products in the cart to delete them:
 
-    // Check if delete buttons exist
     const deleteButtons = await page.locator('[data-testid="DeleteOutlineIcon"]');
 
-    // Check count of items in cart
     const itemCount = await deleteButtons.count();
 
     if (itemCount > 0) {
     console.log(`Found ${itemCount} items in cart. Clearing...`);
 
     for (let i = 0; i < itemCount; i++) {
-        // Always select the first visible one as DOM might re-render
         await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
-        await page.waitForTimeout(300); // slight delay to wait for UI update
+        await page.waitForTimeout(300);
     }
     } else {
     console.log('Cart is already empty.');
