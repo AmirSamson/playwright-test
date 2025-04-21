@@ -31,6 +31,8 @@ test('locate the add button on one specific product card and click on it', async
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
     
+
+    
     //from here we'll add the consts and the if() func here to check for the Products in the cart to delete them:
 
     const deleteButtons = await page.locator('[data-testid="DeleteOutlineIcon"]');

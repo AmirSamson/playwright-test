@@ -33,7 +33,11 @@ test('locate the add button on one specific product card and click on it', async
     
     //from here:
 
-    await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
+
+    // we cam use both .locator() and .getByTestId() the following way: 
+    
+    // await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
+    await page.getByTestId('DeleteOutlineIcon').first().click()
 
     await page.getByLabel('text=سلة التسوق').isVisible()
     await page.locator('[data-sentry-component="CartItemsEmptyState"]').screenshot({path: './screenshots/screenshot-1007-1.jpg'})
