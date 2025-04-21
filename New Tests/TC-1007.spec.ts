@@ -34,5 +34,6 @@ test('click on Continue button to setting password', async ({page}) => {
     //from here:
 
     await page.getByLabel('text=سلة التسوق').isVisible()
+    await page.getByLabel('text=سلة التسوق').screenshot({path: './screenshots/screenshot-1007-1.jpg'})
 })
 
