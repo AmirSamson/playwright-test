@@ -6,7 +6,7 @@ import {expect, test, chromium } from "@playwright/test";
  * In this file we will be trying to locate a button on page with multiple other buttons and add a product to cart.
  */
 
-test('click on Continue button to setting password', async ({page}) => {
+test('locate the add button on one specific product card and click on it', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');
