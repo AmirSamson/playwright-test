@@ -3,10 +3,11 @@ import {expect, test } from "@playwright/test";
 
 /**
  * Descriptiom:
- * Testing to see if there are products in the cart, if yes, then delete them.
+ * Testing to see if there are products in the cart, if yes, then delete them. 
+ * Using the If(){} statement. 
  */
 
-test('locate the add button on one specific product card and click on it', async ({page}) => {
+test('the if() statement to delete items in cart', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');
@@ -38,7 +39,7 @@ test('locate the add button on one specific product card and click on it', async
     const deleteButtons = await page.locator('[data-testid="DeleteOutlineIcon"]');
     const removeButton = await page.locator('[data-testid="RemoveIcon"]')
     const itemCount = await deleteButtons.count();
-    const removeItemCount = await removeButton.count();
+    const removeIconCount = await removeButton.count();
 
     if (itemCount > 0) {
     console.log(`Found ${itemCount} items in cart. Clearing...`);
@@ -50,7 +51,7 @@ test('locate the add button on one specific product card and click on it', async
 
         if (await removeButton.isVisible()){
 
-            for (let i = 0; i < removeItemCount; i++){
+            for (let i = 0; i < removeIconCount; i++){
             await removeButton.first().click();}
         }
  
