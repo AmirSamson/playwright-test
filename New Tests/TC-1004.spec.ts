@@ -1,4 +1,4 @@
-import {expect, test, chromium } from "@playwright/test";
+import { test } from "@playwright/test";
 
 /**
  * Descriptiom:

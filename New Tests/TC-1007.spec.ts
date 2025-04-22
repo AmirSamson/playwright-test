@@ -1,5 +1,5 @@
 
-import {expect, test, chromium } from "@playwright/test";
+import { test } from "@playwright/test";
 
 /**
  * Descriptiom:
@@ -31,18 +31,23 @@ test('locate the add button on one specific product card and click on it', async
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
     
-    //from here:
+    //from here we first clcik on the Delete button of the product in the cart, then we go for the Add button on prodcut="Test 4":
 
 
     // we cam use both .locator() and .getByTestId() the following way: 
-    
+
     // await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
     await page.getByTestId('DeleteOutlineIcon').first().click()
 
     await page.getByLabel('text=سلة التسوق').isVisible()
     await page.locator('[data-sentry-component="CartItemsEmptyState"]').screenshot({path: './screenshots/screenshot-1007-1.jpg'})
+
+
+    // We use the 'article:has-text' because in the page, there are other products on the page as well with the same button
+    // So we need to first identify our own button then click on it: 
+
     const productCard = page.locator('article:has-text("Test 4")');
     await productCard.locator('button').first().click();
+
     await page.waitForTimeout(4000)
 })
-

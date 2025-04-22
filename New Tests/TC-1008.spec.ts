@@ -1,5 +1,5 @@
 
-import {expect, test, chromium } from "@playwright/test";
+import {expect, test } from "@playwright/test";
 
 /**
  * Descriptiom:
@@ -32,21 +32,30 @@ test('locate the add button on one specific product card and click on it', async
     await page.waitForTimeout(2000)
     
 
-    
+
     //from here we'll add the consts and the if() func here to check for the Products in the cart to delete them:
 
     const deleteButtons = await page.locator('[data-testid="DeleteOutlineIcon"]');
-
+    const removeButton = await page.locator('[data-testid="RemoveIcon"]')
     const itemCount = await deleteButtons.count();
+    const removeItemCount = await removeButton.count();
 
     if (itemCount > 0) {
     console.log(`Found ${itemCount} items in cart. Clearing...`);
 
     for (let i = 0; i < itemCount; i++) {
+
         await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
         await page.waitForTimeout(300);
-    }
-    } else {
+
+        if (await removeButton.isVisible()){
+
+            for (let i = 0; i < removeItemCount; i++){
+            await removeButton.first().click();}
+        }
+ 
+    }}
+    else {
     console.log('Cart is already empty.');
     }
 
