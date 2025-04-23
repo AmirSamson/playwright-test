@@ -54,5 +54,10 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     console.log('Cart is already empty.');
     }
 
-    
+    await page.waitForSelector('[data-sentry-component="CartItemsEmptyState"]');
+    await page.getByLabel('text=سلة التسوق').isVisible()
+    await page.locator('[data-sentry-component="CartItemsEmptyState"]').screenshot({path: './screenshots/screenshot-1007-1.jpg'})
+    const productCard = page.locator('article:has-text("Test 4")');
+    await productCard.locator('button').first().click();
+    await page.waitForTimeout(4000)
 })
