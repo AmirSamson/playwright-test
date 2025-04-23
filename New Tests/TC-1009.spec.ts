@@ -31,5 +31,28 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
 
+    const removeButton = await page.locator('[data-testid="RemoveIcon"]')
+    const itemCount = await deleteButtons.count();
+    const removeIconCount = await removeButton.count();
+
+    if (itemCount > 0) {
+    console.log(`Found ${itemCount} items in cart. Clearing...`);
+
+    for (let i = 0; i < itemCount; i++) {
+
+        await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
+        await page.waitForTimeout(300);
+
+        if (await removeButton.isVisible()){
+
+            for (let i = 0; i < removeIconCount; i++){
+            await removeButton.first().click();}
+        }
+ 
+    }}
+    else {
+    console.log('Cart is already empty.');
+    }
+
     
 })
