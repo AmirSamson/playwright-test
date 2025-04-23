@@ -2,11 +2,11 @@ import {expect, test } from "@playwright/test";
 
 /**
  * Descriptiom:
- * Testing to see if there are products in the cart, if yes, then delete them. 
- * Using the If(){} statement. 
+ * Testing to see if we can fill the cart and then clear it. 
+ * Also, trying to clear more than 2 delete buttons.
  */
 
-test('the if() statement to delete items in cart', async ({page}) => {
+test('if the if() statement can clear newly added items to cart', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');
@@ -30,5 +30,6 @@ test('the if() statement to delete items in cart', async ({page}) => {
     await buttonLoc.filter({ hasText: 'تسجيل الدخول' }).click();
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
+
     
 })
