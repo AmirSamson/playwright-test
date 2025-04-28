@@ -31,6 +31,8 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
 
+    // 
+
     const deleteButtons = await page.locator('[data-testid="DeleteOutlineIcon"]');
     const removeButton = await page.locator('[data-testid="RemoveIcon"]')
     const itemCount = await deleteButtons.count();
