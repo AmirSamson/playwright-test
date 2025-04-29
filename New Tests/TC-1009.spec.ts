@@ -41,6 +41,9 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     if (itemCount > 0) {
     console.log(`Found ${itemCount} items in cart. Clearing...`);
 
+
+    // how can we solve this? 
+    
     for (let i = 0; i < itemCount; i++) {
 
         await page.locator('[data-testid="DeleteOutlineIcon"]').first().click();
@@ -63,4 +66,6 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     const productCard = page.locator('article:has-text("Test 4")');
     await productCard.locator('button').first().click();
     await page.waitForTimeout(4000)
+
+
 })
