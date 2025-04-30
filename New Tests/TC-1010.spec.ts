@@ -32,17 +32,6 @@ test('to add products using 3 locators', async ({page}) => {
     await page.waitForTimeout(2000)
     
 
-    // await page.waitForSelector('[data-sentry-component="CartItemsEmptyState"]');
-    // await page.getByLabel('text=سلة التسوق').isVisible()
-    // await page.locator('[data-sentry-component="CartItemsEmptyState"]').screenshot({path: './screenshots/screenshot-1007-1.jpg'})
-    // const productCard = page.locator('article:has-text("Test 4")');
-    // await page.waitForSelector('[data-sentry-source-file="bookmarked-item-card.tsx"]');
-    // const BookmarkedProductCard = page.locator('[data-sentry-source-file="bookmarked-item-card.tsx"]')
-    // .filter({has: page.locator('article:has-text("Test 4")')})
-    // .filter({ hasText: '2,000 د.ع'})
-    
-    // await BookmarkedProductCard.locator('button').first().click();
-
     await page.getByRole('article').filter({ hasText: 'Test 4client only: 2' })
     .getByRole('button').nth(2).click();
 
