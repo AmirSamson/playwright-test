@@ -5,7 +5,7 @@ import {expect, test } from "@playwright/test";
  * Filling the price field and clicking on next button.
  */
 
-test('if the if() statement can clear newly added items to cart', async ({page}) => {
+test('getting Minimum Selling price and adding new price in the field', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');
@@ -37,9 +37,7 @@ test('if the if() statement can clear newly added items to cart', async ({page})
 
     const allArticles = page.getByRole('article');
     const productCard = allArticles.filter({ hasText: 'Test 4client only: 2' });
-   
-    // const productCard = await page.getByRole('article', { name: /Test 4/ });
-    // console.log(await productCard.textContent());
+ 
     const minPriceText = await productCard.locator('text=أعلى من ').textContent();
 
     if (!minPriceText) throw new Error('Minimum price not found');
@@ -51,11 +49,12 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     const minPrice = parseInt(numberStr, 10);
 
         // I added this 1.2 multiplier for multiplying the price by 1.2
+        // and the "Math.ceil()" will round up decimal numbers, if any!
     const newPrice = Math.ceil(minPrice * 1.2);
 
     const priceInput = productCard.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"] input');
 
-    await priceInput.fill('');
+    await priceInput.fill(''); /// and here we type the newPrice into the text filed of customer Price:
     await priceInput.type(newPrice.toString());
 
     
