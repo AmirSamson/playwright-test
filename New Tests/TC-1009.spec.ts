@@ -31,6 +31,9 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     await page.waitForTimeout(2000)
 
     // Here we locate the price field on the Cart for each prodcut.
+    // For that we need to first locate each product card which is the desired product card of ours.
+    // after that we need to get the minimum price and do the addition or multipication on it as we desire.
+    // 
 
    
     const productCard = await page.getByRole('article', { name: /Test 4/ });
@@ -45,6 +48,7 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     const numberStr = match[1].replace(/,/g, ''); 
     const minPrice = parseInt(numberStr, 10);
 
+        // I added this 1.2 multiplier for multiplying the price by 1.2
     const newPrice = Math.ceil(minPrice * 1.2);
 
     const priceInput = productCard.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"] input');
