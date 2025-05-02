@@ -35,10 +35,12 @@ test('if the if() statement can clear newly added items to cart', async ({page})
     // after that we need to get the minimum price and do the addition or multipication on it as we desire.
     // 
 
+    const allArticles = page.getByRole('article');
+    const productCard = allArticles.filter({ hasText: 'Test 4' });
    
-    const productCard = await page.getByRole('article', { name: /Test 4/ });
-
-    const minPriceText = await productCard.locator('text=/أعلى من/').textContent();
+    // const productCard = await page.getByRole('article', { name: /Test 4/ });
+    // console.log(await productCard.textContent());
+    const minPriceText = await productCard.locator('text=أعلى من').textContent();
 
     if (!minPriceText) throw new Error('Minimum price not found');
 
