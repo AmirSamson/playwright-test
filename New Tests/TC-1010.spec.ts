@@ -2,10 +2,10 @@ import {expect, test } from "@playwright/test";
 
 /**
  * Descriptiom:
- * Adding items and then filling the Price field and going forward. 
+ * finding and Filling all of the price fields. 
  */
 
-test('to add products using 3 locators', async ({page}) => {
+test('locate all articles and fill in the new price based on Minimum price', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');
@@ -13,7 +13,6 @@ test('to add products using 3 locators', async ({page}) => {
 
 
     await page.goto('https://webstore.demo.fedshi.ice.global/auth/login');
-    await page.waitForTimeout(1000)
 
     await textbox
        .first()
@@ -30,20 +29,36 @@ test('to add products using 3 locators', async ({page}) => {
     await buttonLoc.filter({ hasText: 'تسجيل الدخول' }).click();
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
+
+    // Here we locate the price field on the Cart for each prodcut.
+    // For that we need to first locate each product card which is the desired product card of ours.
+    // after that we need to get the minimum price and do the addition or multipication on it as we desire.
+    // 
+
+    const allArticles = page.getByRole('article');
+    const productCard = allArticles.filter({ hasText: 'Test 4client only: 2' });
+ 
+    const minPriceText = await productCard.locator('text=أعلى من ').textContent();
+
+    if (!minPriceText) throw new Error('Minimum price not found');
+
+    const match = minPriceText.match(/([\d,]+)\s*د\.ع\./);
+    if (!match) throw new Error('Price number not found in string');
+
+    const numberStr = match[1].replace(/,/g, ''); 
+    const minPrice = parseInt(numberStr, 10);
+
+        // I added this 1.2 multiplier for multiplying the price by 1.2
+        // and the "Math.ceil()" will round up decimal numbers, if any!
+    const newPrice = Math.ceil(minPrice * 1.2);
+
+    const priceInput = productCard.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"] input');
+
+    await priceInput.fill(''); /// and here we type the newPrice into the text filed of customer Price:
+    await priceInput.type(newPrice.toString());
+
     
-
-    await page.getByRole('article').filter({ hasText: 'Test 4client only: 2' })
-    .getByRole('button').nth(2).click();
-
-    // await page.getByRole('article').filter({ hasText: 'new for filter'})
-    // .getByRole('button').nth(2).click();
-
-    // await page.getByRole('article').filter({ hasText: 'new for filter'})
-    // .getByRole('button').first().click();
-    
-    await page.screenshot({path: './screenshots/screenshot-1010-1.jpg'})
-    // .locator('button').first().click();
     await page.waitForTimeout(2000)
+
+
 })
-
-

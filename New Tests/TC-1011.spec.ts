@@ -2,11 +2,10 @@ import {expect, test } from "@playwright/test";
 
 /**
  * Descriptiom:
- * Testing to see if there are products in the cart, if yes, then delete them. 
- * Using the If(){} statement. 
+ * Adding items and then filling the Price field and going forward. 
  */
 
-test('the if() statement to delete items in cart', async ({page}) => {
+test('to add products using 3 locators', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');
@@ -14,6 +13,7 @@ test('the if() statement to delete items in cart', async ({page}) => {
 
 
     await page.goto('https://webstore.demo.fedshi.ice.global/auth/login');
+    await page.waitForTimeout(1000)
 
     await textbox
        .first()
@@ -31,4 +31,12 @@ test('the if() statement to delete items in cart', async ({page}) => {
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
     
+        // we have clicked on the 3rd button of the product card, and removed from list. 
+    await page.getByRole('article').filter({ hasText: 'Test 4client only: 2' })
+    .getByRole('button').nth(2).click();
+    
+    await page.screenshot({path: './screenshots/screenshot-1010-1.jpg'})
+    await page.waitForTimeout(2000)
 })
+
+
