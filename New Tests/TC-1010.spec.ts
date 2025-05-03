@@ -56,7 +56,8 @@ test('locate all articles and fill in the new price based on Minimum price', asy
         console.log(`No valid price found in: ${minPriceText}`);
         continue;
     }}
-
+        // what should be removed and then added is here:
+        
     const numberStr = match[1].replace(/,/g, '');
     const minPrice = parseInt(numberStr, 10);
     const newPrice = Math.ceil(minPrice * 1.2); 
