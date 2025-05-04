@@ -2,7 +2,7 @@ import {expect, test } from "@playwright/test";
 
 /**
  * Descriptiom:
- * finding and Filling all of the price fields. 
+ * finding and Filling all of the price fields. Despite the number of products. we will do some programing here :D
  */
 
 test('locate all articles and fill in the new price based on Minimum price', async ({page}) => {
@@ -57,7 +57,7 @@ test('locate all articles and fill in the new price based on Minimum price', asy
         continue;
     }}
         // what should be removed and then added is here:
-        
+
     const numberStr = match[1].replace(/,/g, '');
     const minPrice = parseInt(numberStr, 10);
     const newPrice = Math.ceil(minPrice * 1.2); 
