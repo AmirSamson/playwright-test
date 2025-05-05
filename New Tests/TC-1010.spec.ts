@@ -30,44 +30,43 @@ test('locate all articles and fill in the new price based on Minimum price', asy
     await page.waitForTimeout(2000)
 
     // Here we locate the price field on the Cart for each prodcut.
-    // For that we need to first locate each product card which is the desired product card of ours.
+    // For that, we need to first locate each product card which is the desired product card of ours.
     // after that we need to get the minimum price and do the addition or multipication on it as we desire.
     // 
 
     const productCards = await page.getByRole('article').all();
 
     for (const card of productCards) {
-    const priceHints = card.locator('text=أعلى من');
-    const count = await priceHints.count();
-
-    if (count === 0) {
-        console.log('No minimum price hint found in this card, skipping...');
+      const priceHints = card.locator('text=أعلى من');
+      const count = await priceHints.count();
+  
+      if (count === 0) {
+        console.log('No minimum price found in this card, skipping...');
         continue;
-    }
-
-    const minPriceText = await priceHints.first().textContent();
-    if (!minPriceText) {
+      }
+  
+      const minPriceText = await priceHints.first().textContent();
+      if (!minPriceText) {
         console.log('Price hint text was empty, skipping...');
         continue;
-    }
-
-    const match = minPriceText.match(/([\d,]+)\s*د\.ع\./);
-    if (!match) {
-        console.log(`No valid price found in: ${minPriceText}`);
+      }
+  
+      const match = minPriceText.match(/([\d,]+)\s*د\.ع\./);
+      if (!match) {
+        console.log(`Price not found in: ${minPriceText}`);
         continue;
-    }}
-        // what should be removed and then added is here:
-
-    const numberStr = match[1].replace(/,/g, '');
-    const minPrice = parseInt(numberStr, 10);
-    const newPrice = Math.ceil(minPrice * 1.2); 
-    const priceInput = card.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"]');
-
-    await priceInput.fill(''); 
-    await priceInput.type(newPrice.toString());
-
-    console.log(`Updated product with price ${minPrice} → ${newPrice}`);
-
+      }
+  
+      const numberStr = match[1].replace(/,/g, '');
+      const minPrice = parseInt(numberStr, 10);
+      const newPrice = Math.ceil(minPrice * 1.2);
+  
+      const priceInput = card.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"]');
+      await priceInput.fill('');
+      await priceInput.type(newPrice.toString());
+  
+      console.log(`Updated price: ${minPrice} → ${newPrice}`);
+    }
 
     await page.waitForTimeout(2000)
 
