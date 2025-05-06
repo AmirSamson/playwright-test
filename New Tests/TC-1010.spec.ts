@@ -61,7 +61,7 @@ test('locate all articles and fill in the new price based on Minimum price', asy
       const minPrice = parseInt(numberStr, 10);
       const newPrice = Math.ceil(minPrice * 1.2);
   
-      const priceInput = card.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"]');
+      const priceInput = card.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"] input');
       await priceInput.fill('');
       await priceInput.type(newPrice.toString());
   
