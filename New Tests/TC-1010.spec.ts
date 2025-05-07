@@ -60,6 +60,9 @@ test('locate all articles and fill in the new price based on Minimum price', asy
       const numberStr = match[1].replace(/,/g, '');
       const minPrice = parseInt(numberStr, 10);
       const newPrice = Math.ceil(minPrice * 1.2);
+
+      // the issue was with this locator : 
+      
   
       const priceInput = card.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"] input');
       await priceInput.fill('');
