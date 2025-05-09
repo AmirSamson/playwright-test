@@ -72,9 +72,9 @@ test('locate all articles and fill in the new price based on Minimum price', asy
     }
 
     // Adding the click on the Continue button (استمر): 
-    await page.getByRole('[data-sentry-component="Button"]').click()
+   
+    await page.locator('text=استمر').click()
 
-    await page.waitForTimeout(2000)
-
+    await page.waitForTimeout(5000)
 
 })
