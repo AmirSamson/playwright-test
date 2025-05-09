@@ -75,6 +75,16 @@ test('locate all articles and fill in the new price based on Minimum price', asy
    
     await page.locator('text=استمر').click()
 
+    // now we wait for page to load the Addresses:
+    await page.waitForTimeout(2000)
+    // const addressButton = await page.locator('[class="PrivateSwitchBase-input mui-j8yymo"]')
+    // //getByRole('paragraph').filter({hasText: 'تتپزوبیو'})
+   
+    // await addressButton.locator('[value="7045"]').first()
+    // We can find the visually clickable sibling
+    await page.locator('input[value="7045"]').click();
+    await page.locator('text=استمر').click()
+    await page.locator('text=استمر').click()
     await page.waitForTimeout(5000)
 
 })
