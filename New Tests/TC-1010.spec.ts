@@ -62,7 +62,7 @@ test('locate all articles and fill in the new price based on Minimum price', asy
       const newPrice = Math.ceil(minPrice * 1.2);
 
       // the issue was with this locator : 
-      
+
   
       const priceInput = card.locator('[data-sentry-element="MuiTextField"][data-sentry-component="NumberTextField"] input');
       await priceInput.fill('');
@@ -70,6 +70,9 @@ test('locate all articles and fill in the new price based on Minimum price', asy
   
       console.log(`Updated price: ${minPrice} → ${newPrice}`);
     }
+
+    // Adding the click on the Continue button (استمر): 
+    await page.getByRole('[data-sentry-component="Button"]').click()
 
     await page.waitForTimeout(2000)
 
