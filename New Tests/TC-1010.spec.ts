@@ -81,6 +81,8 @@ test('locate all articles and fill in the new price based on Minimum price', asy
     // //getByRole('paragraph').filter({hasText: 'تتپزوبیو'})
    
     // await addressButton.locator('[value="7045"]').first()
+
+    
     // We can find the visually clickable sibling
     await page.locator('input[value="7045"]').click();
     await page.locator('text=استمر').click()
