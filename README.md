@@ -38,3 +38,10 @@ It serves as a learning playground (for myself too) for experimenting with Playw
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    cd your-repo-name
+
+### Contact:
+Have questions or ideas? Reach out!
+GitHub: @AmirSamson
+Email: amirhsamson93@gmail.com
+
+
