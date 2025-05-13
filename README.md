@@ -41,7 +41,7 @@ It serves as a learning playground (for myself too) for experimenting with Playw
 
 ### Contact:
 Have questions or ideas? Reach out!
-GitHub: @AmirSamson
-Email: amirhsamson93@gmail.com
+- GitHub: @AmirSamson
+- Email: amirhsamson93@gmail.com
 
 
