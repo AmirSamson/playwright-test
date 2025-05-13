@@ -2,10 +2,10 @@ import {expect, test } from "@playwright/test";
 
 /**
  * Descriptiom:
- * Adding items and then filling the Price field and going forward. 
+ * Using the Assertions which in Playwright is called "Expect". 
  */
 
-test('to add products using 3 locators', async ({page}) => {
+test('multiple assertions', async ({page}) => {
 
     // This is the consts: 
     const buttonLoc = page.getByRole('button');
