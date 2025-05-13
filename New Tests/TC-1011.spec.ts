@@ -35,6 +35,7 @@ test('multiple assertions', async ({page}) => {
     await page.getByRole('article').filter({ hasText: 'Test 4client only: 2' })
     .getByRole('button').nth(2).click();
     
+    await page.expect
     await page.screenshot({path: './screenshots/screenshot-1010-1.jpg'})
     await page.waitForTimeout(2000)
 })
