@@ -1,4 +1,4 @@
-# Playwright Website Testing Suite 🧪
+# Playwright Website Testing Project 🧪
 
 ![Playwright Logo](https://playwright.dev/img/playwright-logo.svg)  
 *An open-source test automation project to validate website functionality using Playwright.*
