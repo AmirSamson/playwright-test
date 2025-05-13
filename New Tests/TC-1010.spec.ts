@@ -29,6 +29,7 @@ test('locate all articles and fill in the new price based on Minimum price', asy
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
 
+
     // Here we locate the price field on the Cart for each prodcut.
     // For that, we need to first locate each product card which is the desired product card of ours.
     // after that we need to get the minimum price and do the addition or multipication on it as we desire.
@@ -76,14 +77,15 @@ test('locate all articles and fill in the new price based on Minimum price', asy
     await page.locator('text=استمر').click()
 
     // now we wait for page to load the Addresses:
+
     await page.waitForTimeout(2000)
+
     // const addressButton = await page.locator('[class="PrivateSwitchBase-input mui-j8yymo"]')
     // //getByRole('paragraph').filter({hasText: 'تتپزوبیو'})
-   
     // await addressButton.locator('[value="7045"]').first(),....
 
 
-    // We can find the visually clickable sibling
+    // We can find the visually clickable sibling here. The same thing happens for the following Continue buttons: 
     await page.locator('input[value="7045"]').click();
     await page.locator('text=استمر').click()
     await page.locator('text=استمر').click()
