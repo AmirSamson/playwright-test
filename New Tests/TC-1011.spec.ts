@@ -35,7 +35,17 @@ test('multiple assertions', async ({page}) => {
     await page.getByRole('article').filter({ hasText: 'Test 4client only: 2' })
     .getByRole('button').nth(2).click();
     
-    await page.expect
+
+    // We are using this as a const to use it in expect. 
+    // why you ask? because the .nth(0) means: The n-th matching element. It's zero based, nth(0) selects the first element.
+    // it works from left to right. 
+    const article = page.getByRole('article').filter({ hasText: 'Test 4client only: 2' }).nth(0);
+    await expect(
+        article
+    )
+    .not.toBeVisible()
+    
+
     await page.screenshot({path: './screenshots/screenshot-1010-1.jpg'})
     await page.waitForTimeout(2000)
 })
