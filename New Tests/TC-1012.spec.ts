@@ -31,4 +31,14 @@ test('the if() statement to delete items in cart', async ({page}) => {
     await page.waitForURL("https://webstore.demo.fedshi.ice.global/checkout/cart")
     await page.waitForTimeout(2000)
     
+    
+    await page.getByRole('article').filter({ hasText: 'Test 4client only: 2' })
+    .getByRole('button').nth(2).click();
+    
+    const rowLocator = page.getByRole('listitem');
+
+    await rowLocator
+    .filter({ hasText: 'Mary' })
+    .filter({ has: page.getByRole('button', { name: 'Say goodbye' }) })
+    .screenshot({ path: 'screenshot.png' });
 })
