@@ -35,10 +35,10 @@ test('the if() statement to delete items in cart', async ({page}) => {
     await page.getByRole('article').filter({ hasText: 'Test 4client only: 2' })
     .getByRole('button').nth(2).click();
     
-    const rowLocator = page.getByRole('listitem');
+    const rowLocator = page.getByRole('article');
 
     await rowLocator
-    .filter({ hasText: 'Mary' })
-    .filter({ has: page.getByRole('button', { name: 'Say goodbye' }) })
+    .filter({ hasText: 'Test 4client only: 2' })
+    .filter({ has: page.getByRole('article', { name: 'Test 4' }) })
     .screenshot({ path: 'screenshot.png' });
 })
