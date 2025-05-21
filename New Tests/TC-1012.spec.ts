@@ -4,6 +4,7 @@ import {expect, test } from "@playwright/test";
  * Descriptiom:
  * Testing to see if there are products in the cart, if yes, then delete them. 
  * Using the If(){} statement. 
+ * Multiple expect() - Assertions. 
  */
 
 test('the if() statement to delete items in cart', async ({page}) => {
