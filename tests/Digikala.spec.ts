@@ -62,6 +62,7 @@ test.describe('check values and consts', () => {
         // await page.locator('[class="flex cursor-pointer"]').first().click()
 
         await expect(page.locator('input[name="search-input"]')).toBeEmpty();
+        await expect(page.locator('.grow > div > div > div > div > div > div > div > svg').first()).toBeHidden()
     });
 });
 
