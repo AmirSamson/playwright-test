@@ -8,7 +8,7 @@ test('expect visibilty on search box', async ({page}) => {
 });
 
 
-test('clearing and expecting to be Empty', async ({page}) => {
+test('checkboxing Radio button, expecting URL change', async ({page}) => {
         await page.goto('https://www.digikala.com/')
         await page.waitForURL('https://www.digikala.com/')
         const SearchBar = await page.getByText('جستجو');
