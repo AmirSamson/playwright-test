@@ -23,18 +23,21 @@ test.describe('check values and consts', () => {
 
         test('expect and not to expect', async ({page}) => {
         await page.goto('https://www.digikala.com/')
+        await page.waitForURL('https://www.digikala.com/')
         const SearchBar = await page.getByText('جستجو');
 
         await SearchBar.click()
         await page.locator('input[name="search-input"]')
         .fill(array[0]);
         await SearchBar.press('Enter');
+        await expect(page).toHaveURL('https://www.digikala.com/search/?q=تبلت')
 
-        await page.locator('input[name="search-input"]')
-        .fill(array[1])
+        await page.waitForTimeout(3000)
+        await page.locator('input[name="search-input"]').click()
+        await page.locator('input[name="search-input"]').fill(array[1])
         await SearchBar.press('Enter');
 
-            const FirstLink = await page.getByRole('link').filter({hasText:array[1]}).first();
+        const FirstLink = await page.getByRole('link').filter({hasText:array[1]}).first();
         await expect(FirstLink).toContainText(array[1])
         await expect(FirstLink).not.toContainText(array[2]);
 
