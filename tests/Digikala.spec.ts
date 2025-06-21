@@ -33,7 +33,8 @@ test.describe('check values and consts', () => {
         await expect(page).toHaveURL('https://www.digikala.com/search/?q=تبلت')
 
         await page.waitForTimeout(3000)
-        await page.locator('input[name="search-input"]').click()
+        // await expect(page.locator('input[name="search-input"]')).toBeEmpty();
+        await page.locator('[class="lg:text-body-2 text-button-1 flex items-center h-full text-body-2 text-neutral-800"]').click()
         await page.locator('input[name="search-input"]').fill(array[1])
         await SearchBar.press('Enter');
 
