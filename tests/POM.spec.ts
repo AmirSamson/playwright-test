@@ -38,17 +38,17 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
 
     await context.addCookies([
         {
-            url: 'https://accounts.mail.ir',
+            url: 'https://todo.qacart.com',
             name: 'access_Token',
             value: 'access_Token'
         },
         {
-            url: 'https://accounts.mail.ir',
+            url: 'https://todo.qacart.com',
             name: 'first_name',
             value: 'first_name'
         },
         {
-            url: 'https://accounts.mail.ir',
+            url: 'https://todo.qacart.com',
             name: 'userID',
             value: 'userID'
         },
