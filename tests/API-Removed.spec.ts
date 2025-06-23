@@ -1,7 +1,6 @@
 import { test } from "@playwright/test";
 import User from "../Models/user"
 import UserAPI from "../APIs/UserAPI";
-import ToDo from "../APIs/Todos";
 import ToDoAPI from "../APIs/Todos";
 
 /**
@@ -32,7 +31,7 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
         'zjlyd@telegmail.com',
         'amir',
         'amiri',
-        '123454'
+        '123454',
     );
 
     // if we don't add the "await" right before "new UserAPI()" the " await resPonse.json()" will raise an error because it is async. 
