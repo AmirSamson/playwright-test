@@ -1,8 +1,6 @@
 export default class User {
-    private username: string
     private lastname: string
     private firstname: string
-    private userID: string
     private email: string
     private password: string
 

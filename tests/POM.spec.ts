@@ -8,6 +8,8 @@ now we can use the POM (page object models). by simply defining a new constant
 test('API call and Bearer Token usage', async ({page, request, context})=>{
 
     const user = new User(
+        'zjlyd',
+        'اساسا',
         'zjlyd@telegmail.com',
         'amir',
         'amiri',
@@ -18,11 +20,11 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
     // only using the "user.getemail" or "user.username" and etc.
     const resPonse = await request.post('https://todo.qacart.com/sign-up', {
         data:{
+            username: user.getUserName, 
+            display_name: user.getdisplay_name,
             identifier: user.getemail, 
-            username: "zjlyd", 
             first_name: user.getfirstname, 
             last_name: user.getlastname,
-            display_name: "اساسا",
             newPassword: user.getpassword
         },
     });
