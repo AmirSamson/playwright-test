@@ -1,6 +1,8 @@
 import { test } from "@playwright/test";
 import User from "../Models/user"
 import UserAPI from "../APIs/UserAPI";
+import ToDo from "../APIs/Todos";
+import ToDoAPI from "../APIs/Todos";
 
 /**
  * In this fill we will use the API call on the "UserAPI.ts" file on APIs folder, and we will remove the codes from here. 
@@ -43,6 +45,10 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
     const first_name = responseBody.first_name;
     const userID = responseBody.userID
 
+
+    user.setaccess_Token(access_Token);
+    user.setuserID(userID);
+
     console.log(access_Token, first_name, userID);
 
     await context.addCookies([
@@ -72,4 +78,7 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
             Authorization: `Bearer ${access_Token}`,
         },
     })
+
+
+    await new ToDoAPI().addTodoAPI(request, user)
 })
