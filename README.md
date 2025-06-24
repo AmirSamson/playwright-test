@@ -36,8 +36,8 @@ It serves as a learning playground (for myself too) for experimenting with Playw
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/AmirSamson/playwright-test.git
+   cd playwright-test
 
 ### Contact:
 Have questions or ideas? Reach out!
