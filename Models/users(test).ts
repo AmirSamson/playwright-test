@@ -4,6 +4,22 @@ export default class users {
     private mail: string
     private pass: string
 
+
+    /** we can also delete the arguments in the "constructor(){}", as an empty constructor, and only the this.name = .... instead
+    this way we can clean the code like this: 
+    constructor()
+        {
+            this.name = name
+            this.lastName = lastName
+            this.mail = mail
+            this.pass = pass
+    }
+
+    and in the file which we used the Constructor(), we can use it like this for the user data: 
+
+    const user = new User();
+
+    */
     constructor(
         name:string, 
         lastName:string, 
