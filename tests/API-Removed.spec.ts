@@ -48,6 +48,8 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
     user.setaccess_Token(access_Token);
     user.setuserID(userID);
 
+
+    
     console.log(access_Token, first_name, userID);
 
     await context.addCookies([
