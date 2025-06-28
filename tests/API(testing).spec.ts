@@ -76,10 +76,17 @@ test('create a todo item with Login', async({page, request, context})=>{
     
     
     await page.goto('http://todo.qacart.com/todo')
+
+    //for this part we need to add the headers in the API call so that we can authorize ourselves and make a POST request.
     await request.post('/api/v1/tasks', {
         data:{
             isCompleted: false,
             item: "AMIR check!"
+        },
+
+        // we are using the access token from the previous API call in the test for Login:
+        headers:{
+            Authorization: `Bearer ${access_token}`
         }
     })
 });
