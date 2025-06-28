@@ -1,19 +1,17 @@
 import test from '@playwright/test'
-import { request } from 'https';
-
-test.use({
-    baseURL: 'https://todo.qacart.com'
-})
 
 test('API sign in', async({page, request, context})=> {
-    const Response = await request.post('/api/v1/users/register', {
+    const Response = await request.post('http://todo.qacart.com/api/v1/users/register', {
         data:{
-            email: "253@gmail.com",
-            firstName: 'hey',
-            lastName: 'hey1',
+            email: "257@gmail.com",
+            firstName: 'hey2',
+            lastName: 'hey2',
             password:"1234qwer@A"
         },
     });
+
+    //we do this to extract the data(the access_Token, firstname and etc.) to store it in the variables of ResposeBody and etc. 
+    // and by creating the Response.json(); we will store them in a JSON fro further usage:
 
     const ResponseBody = await Response.json();
     const access_token = ResponseBody.access_token; //each of these will be a cookie inside the "context.addcookies([])"
@@ -22,25 +20,25 @@ test('API sign in', async({page, request, context})=> {
 
     await context.addCookies([
         {
-            name: "access_token",
+            name: 'access_token',
             value: access_token,
-            url: ''
+            url: 'http://todo.qacart.com/'
         },
         {  
-            name: "firstName",
+            name: 'firstName',
             value: firstName,
-            url: ''
+            url: 'http://todo.qacart.com/'
         },
         {  
-            name: "userID",
+            name: 'userID',
             value: userID,
-            url: ''
+            url: 'http://todo.qacart.com/'
         },
     ]);
     console.log(access_token, firstName, userID)
 
     //now that we have successfully done the API calls and 
-    await page.goto('/todo')
+    await page.goto('https://todo.qacart.com//todo')
     
 });
 
