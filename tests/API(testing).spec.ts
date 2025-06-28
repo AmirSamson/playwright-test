@@ -1,9 +1,13 @@
 import test from '@playwright/test'
 
+test.use({
+    baseURL: 'http://todo.qacart.com/'
+});
+
 test('API sign in', async({page, request, context})=> {
-    const Response = await request.post('http://todo.qacart.com/api/v1/users/register', {
+    const Response = await request.post('/api/v1/users/register', {
         data:{
-            email: "257@gmail.com",
+            email: "233@gmail.com",
             firstName: 'hey2',
             lastName: 'hey2',
             password:"1234qwer@A"
@@ -22,34 +26,29 @@ test('API sign in', async({page, request, context})=> {
         {
             name: 'access_token',
             value: access_token,
-            url: 'http://todo.qacart.com/'
+            url: 'https://todo.qacart.com/'
         },
         {  
             name: 'firstName',
             value: firstName,
-            url: 'http://todo.qacart.com/'
+            url: 'https://todo.qacart.com/'
         },
         {  
             name: 'userID',
             value: userID,
-            url: 'http://todo.qacart.com/'
+            url: 'https://todo.qacart.com/'
         },
     ]);
     console.log(access_token, firstName, userID)
 
     //now that we have successfully done the API calls and 
-    await page.goto('https://todo.qacart.com//todo')
+    await page.goto('todo/new')
     
 });
 
-test('create a todo item', async({page, request, context})=>{
-    const Response = await request.post('/api/v1/users/register', {
-        data:{
-            email: "253@gmail.com",
-            firstName: 'hey',
-            lastName: 'hey1',
-            password:"1234qwer@A"
-        },
+test('create a todo item with Login', async({page, request, context})=>{
+    const Response = await request.post('http://todo.qacart.com/api/v1/users/login', {
+        data:{email: "253@gmail.com", password: "1234qwer@A"}
     });
 
     const ResponseBody = await Response.json();
@@ -61,23 +60,23 @@ test('create a todo item', async({page, request, context})=>{
         {
             name: "access_token",
             value: access_token,
-            url: ''
+            url: 'https://todo.qacart.com/'
         },
         {  
             name: "firstName",
             value: firstName,
-            url: ''
+            url: 'https://todo.qacart.com/'
         },
         {  
             name: "userID",
             value: userID,
-            url: ''
+            url: 'https://todo.qacart.com/'
         },
     ]);
     
     
-    await page.goto('/')
-    await request.post('/api/v1/tasks',{
+    await page.goto('http://todo.qacart.com/todo')
+    await request.post('/api/v1/tasks', {
         data:{
             isCompleted: false,
             item: "AMIR check!"
