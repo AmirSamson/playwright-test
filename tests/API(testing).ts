@@ -1,11 +1,14 @@
 import test from '@playwright/test'
-import { stringify } from 'querystring';
+import { request } from 'https';
 
+test.use({
+    baseURL: 'https://todo.qacart.com'
+})
 
 test('API sign in', async({page, request, context})=> {
-    const Response = await request.post('http://todo.qacart.com/api/v1/users/register', {
+    const Response = await request.post('/api/v1/users/register', {
         data:{
-            email: "252@gmail.com",
+            email: "253@gmail.com",
             firstName: 'hey',
             lastName: 'hey1',
             password:"1234qwer@A"
@@ -21,22 +24,65 @@ test('API sign in', async({page, request, context})=> {
         {
             name: "access_token",
             value: access_token,
-            url: 'https://todo.qacart.com/'
+            url: ''
         },
         {  
             name: "firstName",
             value: firstName,
-            url: 'https://todo.qacart.com/'
+            url: ''
         },
         {  
             name: "userID",
             value: userID,
-            url: 'https://todo.qacart.com/'
+            url: ''
         },
     ]);
     console.log(access_token, firstName, userID)
 
     //now that we have successfully done the API calls and 
-    await page.goto('https://todo.qacart.com/todo')
+    await page.goto('/todo')
     
-})
+});
+
+test('create a todo item', async({page, request, context})=>{
+    const Response = await request.post('/api/v1/users/register', {
+        data:{
+            email: "253@gmail.com",
+            firstName: 'hey',
+            lastName: 'hey1',
+            password:"1234qwer@A"
+        },
+    });
+
+    const ResponseBody = await Response.json();
+    const access_token = ResponseBody.access_token; //each of these will be a cookie inside the "context.addcookies([])"
+    const firstName = ResponseBody.firstName;
+    const userID = ResponseBody.userID;
+    
+    await context.addCookies([
+        {
+            name: "access_token",
+            value: access_token,
+            url: ''
+        },
+        {  
+            name: "firstName",
+            value: firstName,
+            url: ''
+        },
+        {  
+            name: "userID",
+            value: userID,
+            url: ''
+        },
+    ]);
+    
+    
+    await page.goto('/')
+    await request.post('/api/v1/tasks',{
+        data:{
+            isCompleted: false,
+            item: "AMIR check!"
+        }
+    })
+});
