@@ -48,7 +48,10 @@ test('API sign in', async({page, request, context})=> {
 
 test('create a todo item with Login', async({page, request, context})=>{
     const Response = await request.post('http://todo.qacart.com/api/v1/users/login', {
-        data:{email: "253@gmail.com", password: "1234qwer@A"}
+        data:{
+            email: "253@gmail.com", 
+            password: "1234qwer@A"
+        }
     });
 
     const ResponseBody = await Response.json();
