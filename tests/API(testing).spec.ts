@@ -1,13 +1,15 @@
 import test from '@playwright/test'
+import TestUser from '../Models/users(test)';
 
 test.use({
     baseURL: 'http://todo.qacart.com/'
 });
 
 test('API sign in', async({page, request, context})=> {
+
     const Response = await request.post('/api/v1/users/register', {
         data:{
-            email: "233@gmail.com",
+            email: "326@gmail.com",
             firstName: 'hey2',
             lastName: 'hey2',
             password:"1234qwer@A"
@@ -39,10 +41,8 @@ test('API sign in', async({page, request, context})=> {
             url: 'https://todo.qacart.com/'
         },
     ]);
-    console.log(access_token, firstName, userID)
 
-    //now that we have successfully done the API calls and 
-    await page.goto('todo/new')
+    console.log(access_token, firstName, userID)
     
 });
 
@@ -77,9 +77,6 @@ test('create a todo item with Login', async({page, request, context})=>{
         },
     ]);
     
-    
-    await page.goto('http://todo.qacart.com/todo')
-
     //for this part we need to add the headers in the API call so that we can authorize ourselves and make a POST request.
     await request.post('/api/v1/tasks', {
         data:{
@@ -93,3 +90,4 @@ test('create a todo item with Login', async({page, request, context})=>{
         }
     })
 });
+
