@@ -8,7 +8,7 @@ test.use({
 test('removing API and adding the Models instead.', async({page, request, context})=> {
 
     const testerUser = new TestUser(
-        "513@gmail.com", 
+        "516@gmail.com", 
         'hey2', 
         'hey2', 
         '1234qwer@A'
@@ -28,25 +28,33 @@ test('removing API and adding the Models instead.', async({page, request, contex
     const firstName = ResponseBody.firstName;
     const userID = ResponseBody.userID;
 
-    await context.addCookies([
-        {
-            name: 'access_token',
-            value: access_token,
-            url: 'https://todo.qacart.com/'
-        },
-        {  
-            name: 'firstName',
-            value: firstName,
-            url: 'https://todo.qacart.com/'
-        },
-        {  
-            name: 'userID',
-            value: userID,
-            url: 'https://todo.qacart.com/'
-        },
-    ]);
-    console.log(access_token, firstName, userID)
 
-    await page.goto('todo/new')
+    // way.. 
     
+    // await context.addCookies([
+    //     {name: 'access_token', value:access_token, url: 'https://todo.qacart.com/'},
+    //     {name:'firstName', value:firstName, url: 'https://todo.qacart.com/' },
+    //     {name:'userID', value:userID, url: 'https://todo.qacart.com/' }
+    // ]);
+
+    // await context.addCookies([
+    //     {
+    //         name: 'access_token',
+    //         value: access_token,
+    //         url: 'http://todo.qacart.com/'
+    //     },
+    //     {  
+    //         name: 'firstName',
+    //         value: firstName,
+    //         url: 'http://todo.qacart.com/'
+    //     },
+    //     {  
+    //         name: 'userID',
+    //         value: userID,
+    //         url: 'http://todo.qacart.com/'
+    //     },
+    // ]);
+
+
+    // console.log(access_token, firstName, userID)    
 });
