@@ -31,29 +31,29 @@ test('removing API and adding the Models instead.', async({page, request, contex
 
     // way.. 
     
-    // await context.addCookies([
-    //     {name: 'access_token', value:access_token, url: 'https://todo.qacart.com/'},
-    //     {name:'firstName', value:firstName, url: 'https://todo.qacart.com/' },
-    //     {name:'userID', value:userID, url: 'https://todo.qacart.com/' }
-    // ]);
+    await context.addCookies([
+        {name: 'access_token', value:access_token, url: 'https://todo.qacart.com/'},
+        {name:'firstName', value:firstName, url: 'https://todo.qacart.com/' },
+        {name:'userID', value:userID, url: 'https://todo.qacart.com/' }
+    ]);
 
-    // await context.addCookies([
-    //     {
-    //         name: 'access_token',
-    //         value: access_token,
-    //         url: 'http://todo.qacart.com/'
-    //     },
-    //     {  
-    //         name: 'firstName',
-    //         value: firstName,
-    //         url: 'http://todo.qacart.com/'
-    //     },
-    //     {  
-    //         name: 'userID',
-    //         value: userID,
-    //         url: 'http://todo.qacart.com/'
-    //     },
-    // ]);
+    await context.addCookies([
+        {
+            name: 'access_token',
+            value: access_token,
+            url: 'http://todo.qacart.com/'
+        },
+        {  
+            name: 'firstName',
+            value: firstName,
+            url: 'http://todo.qacart.com/'
+        },
+        {  
+            name: 'userID',
+            value: userID,
+            url: 'http://todo.qacart.com/'
+        },
+    ]);
 
 
     // console.log(access_token, firstName, userID)    
