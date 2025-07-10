@@ -9,10 +9,10 @@ test('API sign in', async({page, request, context})=> {
 
     const Response = await request.post('/api/v1/users/register', {
         data:{
-            email: "326@gmail.com",
             firstName: 'hey2',
             lastName: 'hey2',
-            password:"1234qwer@A"
+            email: "326@gmail.com",
+            password:"1234qwer@A",
         },
     });
 
