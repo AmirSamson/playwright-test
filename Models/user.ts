@@ -35,8 +35,12 @@ export default class User {
     // const user = new User('example_firstname', 'example_lastname', 'password', 'test@email.com')
     //but theese are Private. we need to get them using the following method:
 
-    getUserName(){return this.UserName}
-    getdisplay_name(){return this.display_name}
+    getUserName(){
+        return this.UserName
+    }
+    getdisplay_name(){
+        return this.display_name
+    }
     getfirstname(){
         return this.firstname
     }
