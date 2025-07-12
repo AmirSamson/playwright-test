@@ -12,20 +12,16 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
         'اساسا',
         'zjlyd@telegmail.com',
         'amir',
-        'amiri',
-        '123454'
     );
 
     // now the model is used in the API as well. as easy as it looks. 
     // only using the "user.getemail" or "user.username" and etc.
     const resPonse = await request.post('https://todo.qacart.com/sign-up', {
         data:{
-            username: user.getUserName, 
-            display_name: user.getdisplay_name,
-            identifier: user.getemail, 
-            first_name: user.getfirstname, 
-            last_name: user.getlastname,
-            newPassword: user.getpassword
+            firstName: user.getFirstName, 
+            lastName: user.getLastName, 
+            email: user.getEmail,
+            password: user.getPassword,
         },
     });
     const responseBody = await resPonse.json();

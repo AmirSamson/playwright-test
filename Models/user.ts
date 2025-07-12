@@ -1,28 +1,23 @@
 export default class User {
-    private firstName: string;
-    private lastName: string;
-    private email: string;
-    private password: string;
-
+    private firstName:string;
+    private lastName:string;
+    private email:string;
+    private password:string;
     // for these two, we don't want to have them constructed in the Constructor(), so we won't add them. and instead we creat a getter and a Setter:
     private access_Token: string;
     private userID: string;
-
 
     //now we need a constructor
     // we need to get an argument from this contructor and set it to thos variables we defined above (in class): 
     // the "this.email = ..." will do that for us.
 
     constructor(
-        firstName: string, 
-        lastName: string, 
-        email: string,
-        password: string)
+        firstName:string, lastName:string, email:string, password:string)
         {
-        this.firstName = firstName
-        this.lastName = lastName
-        this.email = email
-        this.password = password
+        this.firstName = firstName; 
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     // now we can define this User in the tests and import it there,  and call the arguements in the Constructor (respectfully) in there. like this:
@@ -30,18 +25,10 @@ export default class User {
     //but theese are Private. we need to get them using the following method:
 
 
-    getFirstName(){
-        return this.firstName
-    }
-    getLastName(){
-        return this.lastName
-    }
-    getEmail(){
-        return this.email
-    }
-    getPassword(){
-        return this.password
-    }
+    getFirstName(){ return this.firstName}
+    getLastName(){  return this.lastName}
+    getEmail(){ return this.email}
+    getPassword(){ return this.password}
 
     //we add the getter and setter for the "access_Token" and "userID":
     getaccess_Token(){
