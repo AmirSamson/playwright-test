@@ -1,8 +1,6 @@
 export default class User {
-    private UserName: string;
-    private display_name: string;
-    private lastname: string;
-    private firstname: string;
+    private firstName: string;
+    private lastName: string;
     private email: string;
     private password: string;
 
@@ -16,18 +14,14 @@ export default class User {
     // the "this.email = ..." will do that for us.
 
     constructor(
-        UserName: string,
-        display_name: string,
-        firstname: string, 
-        lastname: string, 
-        password: string, 
-        email: string)
+        firstName: string, 
+        lastName: string, 
+        email: string,
+        password: string)
         {
-        this.UserName = UserName
-        this.display_name = display_name
+        this.firstName = firstName
+        this.lastName = lastName
         this.email = email
-        this.firstname = firstname
-        this.lastname = lastname
         this.password = password
     }
 
@@ -35,22 +29,17 @@ export default class User {
     // const user = new User('example_firstname', 'example_lastname', 'password', 'test@email.com')
     //but theese are Private. we need to get them using the following method:
 
-    getUserName(){
-        return this.UserName
+
+    getFirstName(){
+        return this.firstName
     }
-    getdisplay_name(){
-        return this.display_name
+    getLastName(){
+        return this.lastName
     }
-    getfirstname(){
-        return this.firstname
-    }
-    getlastname(){
-        return this.lastname
-    }
-    getemail(){
+    getEmail(){
         return this.email
     }
-    getpassword(){
+    getPassword(){
         return this.password
     }
 
