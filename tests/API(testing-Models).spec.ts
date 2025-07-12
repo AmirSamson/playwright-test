@@ -1,27 +1,31 @@
 import test from "@playwright/test";
-import testingUser from "../Models/users(test)";
+import testingUser from "../Models/userTest";
+import UserAPIsTest from "../APIs/UserAPIs(test)";
+import userTest from "../Models/userTest";
+
 
 // test.use({
 //     baseURL: 'http://todo.qacart.com/'
 // })
 
-test('removing API and adding the Models instead.', async({page, request, context})=> {
+test('removing API and adding the Models instead.', async({request, context})=> {
 
     const NewUser = new testingUser(
+        'hey2', 
         'hey3', 
-        'hey3', 
-        "518@gmail.com",
+        "519@gmail.com",
         '1234qwer@A',
     );
 
     const responses = await request.post('http://todo.qacart.com/api/v1/users/register', {
         data:{
-            email: NewUser.getEmail(),
             firstName: NewUser.getFirtName(),
             lastName: NewUser.getLastName(),
-            password: NewUser.getPassword(),
+            email: NewUser.getEmail(),
+            password:NewUser.getPassword(),
         },
     });
+    
 
     const ResponseBody = await responses.json();
     const access_token = ResponseBody.access_token; 

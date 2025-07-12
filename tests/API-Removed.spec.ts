@@ -28,16 +28,16 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
     const user = new User(
         'zjlyd',
         'اساسا',
-        'zjlyd@telegmail.com',
-        'amir',
+        'zjlyd12@telegmail.com',
+        'amir1234@A',
     );
 
     // if we don't add the "await" right before "new UserAPI()" the " await resPonse.json()" will raise an error because it is async. 
     //so we add an "await" right before "new UserAPI()" to avoid it:
 
-    const resPonse = await new UserAPI().signup(request, user);
+    const response = await new UserAPI().signup(request, user);
 
-    const responseBody = await resPonse.json();
+    const responseBody = await response.json();
     const access_Token = responseBody.access_Token;
     const first_name = responseBody.first_name;
     const userID = responseBody.userID
@@ -68,7 +68,7 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
         },
     ]);
 
-    await request.post('https://todo.qacart.com', {
+    await request.post('http://todo.qacart.com/api/v1/tasks', {
         data:{
             isCompleted: false,
             item: 'This is a TEST',
@@ -79,5 +79,6 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
     })
 
 
-    await new ToDoAPI().addTodoAPI(request, user)
+    // await new ToDoAPI().addTodoAPI(request, user)
+    // await page.goto('')
 })

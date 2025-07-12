@@ -15,13 +15,14 @@ export default class UserAPI{
 
         // now we copy the API request from .\tests\Requests.spec.ts file and add it here with changing a little bit:
 
-        const responses = await request.post('http://todo.qacart.com/api/v1/users/register', {
+        return await request.post('http://todo.qacart.com/api/v1/users/register', {
         data:{
-            firstName: User.getFirtName(),
-            lastName: User.getLastName(),
-            email: User.getEmail(),
-            password: User.getPassword(),
+            firstName: user.getFirstName(),
+            lastName: user.getLastName(),
+            email: user.getEmail(),
+            password:user.getPassword(),
         },
     });
-    }
-}
+
+    };
+};

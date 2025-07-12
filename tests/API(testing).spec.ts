@@ -1,5 +1,5 @@
 import test from '@playwright/test'
-import TestUser from '../Models/users(test)';
+import TestUser from '../Models/userTest';
 
 test.use({
     baseURL: 'http://todo.qacart.com/'
