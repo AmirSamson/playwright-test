@@ -17,15 +17,7 @@ test('removing API and adding the Models instead.', async({request, context})=> 
         '1234qwer@A',
     );
 
-    const responses = await request.post('http://todo.qacart.com/api/v1/users/register', {
-        data:{
-            firstName: NewUser.getFirtName(),
-            lastName: NewUser.getLastName(),
-            email: NewUser.getEmail(),
-            password:NewUser.getPassword(),
-        },
-    });
-    
+    const responses = await new UserAPIsTest().register(request, NewUser);
 
     const ResponseBody = await responses.json();
     const access_token = ResponseBody.access_token; 
