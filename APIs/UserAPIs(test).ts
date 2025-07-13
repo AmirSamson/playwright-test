@@ -12,5 +12,14 @@ export default class UserAPIsTest{
             password:NewUser.getPassword(),
         },
     });
-    }
-}
+    };
+
+    async Login(request: APIRequestContext, NewUser: testingUser){
+        return await request.post('https://todo.qacart.com/api/v1/users/login', {
+            data:{
+                email: NewUser.getEmail(),
+                password: NewUser.getPassword(),
+            }
+        });
+    };
+};

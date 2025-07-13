@@ -8,12 +8,12 @@ import userTest from "../Models/userTest";
 //     baseURL: 'http://todo.qacart.com/'
 // })
 
-test('removing API and adding the Models instead.', async({request, context})=> {
+test('Register the user - removing API and adding the Models instead.', async({request, context})=> {
 
     const NewUser = new testingUser(
         'hey2', 
         'hey3', 
-        "519@gmail.com",
+        "521@gmail.com",
         '1234qwer@A',
     );
 
