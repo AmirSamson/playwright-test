@@ -5,6 +5,8 @@ export default class testingUser{
     private lastName:string;
     private email:string;
     private password:string;
+    private access_token: string;
+    private userID: string;
 
     // we recieve the Arguments from the tests.
     constructor(firstName:string, lastName:string, email:string, password:string)
@@ -21,4 +23,10 @@ export default class testingUser{
     getLastName(){  return this.lastName}
     getEmail(){ return this.email}
     getPassword(){ return this.password}
+
+    getaccess_token(){return this.access_token}
+    setaccess_token(access_token:string){this.access_token = access_token}
+
+    getuserID(){return this.userID}
+    setuserID(userID:string){this.userID = userID}
 }

@@ -1,6 +1,7 @@
 import test from "@playwright/test";
 import testingUser from "../Models/userTest";
 import UserAPIsTest from "../APIs/UserAPIs(test)";
+import ToDoAPI from "../APIs/TodoAPI(test)";
 
 // test.use({
 //     baseURL: 'http://todo.qacart.com/'
@@ -76,15 +77,7 @@ test('Adding a Todo item - using models.', async ({page, request, context})=>{
         }
     ]);
 
-    await request.post('https://todo.qacart.com/api/v1/tasks', {
-        data:{
-            isCompleted: false,
-            item: "New test - item 2"
-        },
-        headers: {
-            Authorization: `Bearer: ${access_token}`
-        } 
-    })
+    new ToDoAPI().AddTodo(request,NewUser)
 
     await page.goto('https://todo.qacart.com/todo')
 })

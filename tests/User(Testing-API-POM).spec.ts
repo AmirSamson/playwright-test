@@ -1,7 +1,6 @@
 import { test } from "@playwright/test";
 import User from "../Models/user"
 import UserAPI from "../APIs/UserAPI";
-import ToDoAPI from "../APIs/Todos";
 
 /**
  * In this fill we will use the API call on the "UserAPI.ts" file on APIs folder, and we will remove the codes from here. 
@@ -68,17 +67,25 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
         },
     ]);
 
-    await request.post('http://todo.qacart.com/api/v1/tasks', {
-        data:{
-            isCompleted: false,
-            item: 'This is a TEST',
-        },
-        headers: {
-            Authorization: `Bearer ${access_Token}`,
-        },
-    })
+
+    //  this is the Model for Login - useing the "user.ts"     ---->            await new UserAPI().Login(request, user)
+
+});
 
 
-    // await new ToDoAPI().addTodoAPI(request, user)
-    // await page.goto('')
-})
+
+
+test('Should be able to register', async({page, request})=>{
+
+    const user = new User(
+        'zjlyd',
+        'اساسا',
+        'zjlyd12@telegmail.com',
+        'amir1234@A',
+    );
+
+    await new UserAPI().Login(request, user)
+    
+    await page.goto('')
+
+});
