@@ -1,6 +1,7 @@
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import User from "../Models/user"
 import UserAPI from "../APIs/UserAPI";
+import SignUpPage from "../Pages/SignUpPage";
 
 /**
  * In this fill we will use the API call on the "UserAPI.ts" file on APIs folder, and we will remove the codes from here. 
@@ -74,18 +75,46 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
 
 
 
+//should add the register api for the SignUp.ts page in "Pages" folder
+test('Should be able to register', async({page, request, context})=>{
 
-test('Should be able to register', async({page, request})=>{
-
-    const user = new User(
-        'zjlyd',
-        'اساسا',
-        'zjlyd12@telegmail.com',
-        'amir1234@A',
-    );
-
-    await new UserAPI().Login(request, user)
+    // const user = new User(
+    //     'hey2',
+    //     'hey2',
+    //     '520@gmail.com',
+    //     '1234qwer@A',
+    // );
     
-    await page.goto('')
+    // const response = await new UserAPI().Login(request, user);
+
+    // const responseBody = await response.json();
+    // const access_Token = responseBody.access_token;
+    // const userID = responseBody.userID;
+    // const first_name = responseBody.first_name;
+
+    // await context.addCookies([
+    //      {
+    //         url: 'https://todo.qacart.com',
+    //         name: 'access_Token',
+    //         value: 'access_Token'
+    //     },
+    //     {
+    //         url: 'https://todo.qacart.com',
+    //         name: 'first_name',
+    //         value: 'first_name'
+    //     },
+    //     {
+    //         url: 'https://todo.qacart.com',
+    //         name: 'userID',
+    //         value: 'userID'
+    //     },
+    // ])
+
+    const signUpPage = new SignUpPage()
+    await signUpPage.LoadthePage(page);
+    await signUpPage.Signup(page)
+
+    const welcomeMessage = await page.locator('[data-testid=welcome]');
+    await expect(welcomeMessage).toBeVisible();
 
 });
