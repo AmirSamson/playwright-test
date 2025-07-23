@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import User from "../Models/user"
 import UserAPI from "../APIs/UserAPI";
 import SignUpPage from "../Pages/SignUpPage";
+import TodoPage from "../Pages/TodoPage";
 
 /**
  * In this fill we will use the API call on the "UserAPI.ts" file on APIs folder, and we will remove the codes from here. 
@@ -28,46 +29,15 @@ test('API call and Bearer Token usage', async ({page, request, context})=>{
     const user = new User(
         'zjlyd',
         'اساسا',
-        'zjlyd12@telegmail.com',
+        'zjlyd17@gmail.com',
         'amir1234@A',
     );
 
     // if we don't add the "await" right before "new UserAPI()" the " await resPonse.json()" will raise an error because it is async. 
     //so we add an "await" right before "new UserAPI()" to avoid it:
 
-    const response = await new UserAPI().signup(request, user);
-
-    const responseBody = await response.json();
-    const access_Token = responseBody.access_Token;
-    const first_name = responseBody.first_name;
-    const userID = responseBody.userID
-
-
-    user.setaccess_Token(access_Token);
-    user.setuserID(userID);
-
-
-    
-    console.log(access_Token, first_name, userID);
-
-    await context.addCookies([
-        {
-            url: 'https://todo.qacart.com',
-            name: 'access_Token',
-            value: 'access_Token'
-        },
-        {
-            url: 'https://todo.qacart.com',
-            name: 'first_name',
-            value: 'first_name'
-        },
-        {
-            url: 'https://todo.qacart.com',
-            name: 'userID',
-            value: 'userID'
-        },
-    ]);
-
+    const singUPAPI = new SignUpPage();
+    await singUPAPI.signupAPI(request, user, context)
 
     //  this is the Model for Login - useing the "user.ts"     ---->            await new UserAPI().Login(request, user)
 
@@ -114,7 +84,9 @@ test('Should be able to register', async({page, request, context})=>{
     await signUpPage.LoadthePage(page);
     await signUpPage.Signup(page)
 
-    const welcomeMessage = await page.locator('[data-testid=welcome]');
+    const Todopage = new TodoPage()
+    const welcomeMessage = Todopage.getWelcomeMessageElement(page);
+
     await expect(welcomeMessage).toBeVisible();
 
 });
