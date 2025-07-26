@@ -10,6 +10,8 @@ export default class SignUpPage{
     async LoadthePage(page: Page){
             await page.goto('http://todo.qacart.com/signup');
     }
+
+    // we can define the locators as Attributes to this model:
     private get firstnameInput(){
         return `[data-testid=first-name]`
     }
@@ -40,22 +42,19 @@ export default class SignUpPage{
     }
 
 
-    async signupAPI(request: APIRequestContext, user:User, context: BrowserContext){
-        
-    const response = await new UserAPI().signup(request, user);
 
-    const responseBody = await response.json();
-    const access_Token = responseBody.access_Token;
-    const first_name = responseBody.first_name;
-    const userID = responseBody.userID
+    async signupUsingAPI(request: APIRequestContext, user:User, context: BrowserContext) {
+        
+        const response = await new UserAPI().signup(request, user);
+        const responseBody = await response.json();
+        const access_Token = responseBody.access_Token;
+        const first_name = responseBody.first_name;
+        const userID = responseBody.userID
 
 
     // user.setaccess_Token(access_Token);
     // user.setuserID(userID);
-
-
-    
-    console.log(access_Token, first_name, userID);
+    // console.log(access_Token, first_name, userID);
 
     await context.addCookies([
         {

@@ -6,14 +6,9 @@ import User from "../Models/user";
  * We well add the methods for the requests.
  */
 
-
 export default class UserAPI{
 
-    //each method name is based on what we do with that API. for example, in the sign up API, we use the method name of "SignUp":
-
     async signup(request: APIRequestContext, user:User){
-
-        // now we copy the API request from .\tests\Requests.spec.ts file and add it here with changing a little bit:
 
         return await request.post('http://todo.qacart.com/api/v1/users/register', {
         data:{
@@ -26,7 +21,7 @@ export default class UserAPI{
 
     };
 
-      async Login(request: APIRequestContext, user: User){
+    async Login(request: APIRequestContext, user: User){
             return await request.post('https://todo.qacart.com/api/v1/users/login', {
                 data:{
                     email: user.getEmail(),

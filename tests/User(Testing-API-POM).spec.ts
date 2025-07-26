@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 import User from "../Models/user"
-import UserAPI from "../APIs/UserAPI";
 import SignUpPage from "../Pages/SignUpPage";
 import TodoPage from "../Pages/TodoPage";
 
@@ -24,22 +23,19 @@ import TodoPage from "../Pages/TodoPage";
 
  */
 
-test('API call and Bearer Token usage', async ({page, request, context})=>{
+test('API call and Bearer Token usage for Register', async ({page, request, context})=>{
 
     const user = new User(
         'zjlyd',
-        'اساسا',
-        'zjlyd17@gmail.com',
-        'amir1234@A',
+        'AAAAm',
+        'zjlyd22@gmail.com',
+        '1234qwer@A',
     );
 
-    // if we don't add the "await" right before "new UserAPI()" the " await resPonse.json()" will raise an error because it is async. 
-    //so we add an "await" right before "new UserAPI()" to avoid it:
+    const singUpPage = new SignUpPage();
+    await singUpPage.signupUsingAPI(request, user, context); 
+    await page.goto('http://todo.qacart.com/todo');
 
-    const singUPAPI = new SignUpPage();
-    await singUPAPI.signupAPI(request, user, context)
-
-    //  this is the Model for Login - useing the "user.ts"     ---->            await new UserAPI().Login(request, user)
 
 });
 
