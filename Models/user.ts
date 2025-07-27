@@ -4,7 +4,7 @@ export default class User {
     private email:string;
     private password:string;
     // for these two, we don't want to have them constructed in the Constructor(), so we won't add them. and instead we creat a getter and a Setter:
-    private access_Token: string;
+    private access_token: string;
     private userID: string;
 
     //now we need a constructor
@@ -12,7 +12,10 @@ export default class User {
     // the "this.email = ..." will do that for us.
 
     constructor(
-        firstName:string, lastName:string, email:string, password:string)
+        firstName:string, 
+        lastName:string, 
+        email:string, 
+        password:string)
         {
         this.firstName = firstName; 
         this.lastName = lastName;
@@ -31,17 +34,17 @@ export default class User {
     getPassword(){ return this.password}
 
     //we add the getter and setter for the "access_Token" and "userID":
-    getaccess_Token(){
-        return this.access_Token
+    getaccess_token(){
+        return this.access_token;
     }
-    setaccess_Token(access_Token: string){
-        this.access_Token = access_Token
+    setaccess_token(access_token: string){
+        this.access_token = access_token;
     }
 
     getuserID(){
-        return this.userID
+        return this.userID;
     }
     setuserID(userID: string){
-        this.userID=userID
+        this.userID=userID;
     }
 }

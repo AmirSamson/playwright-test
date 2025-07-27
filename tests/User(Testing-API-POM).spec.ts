@@ -28,7 +28,7 @@ test('API call and Bearer Token usage for Register', async ({page, request, cont
     const user = new User(
         'zjlyd',
         'AAAAm',
-        'zjlyd22@gmail.com',
+        'zjlyd29@gmail.com',
         '1234qwer@A',
     );
 

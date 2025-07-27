@@ -11,7 +11,7 @@ test('API sign in', async({page, request, context})=> {
         data:{
             firstName: 'hey2',
             lastName: 'hey2',
-            email: "326@gmail.com",
+            email: "327@gmail.com",
             password:"1234qwer@A",
         },
     });
@@ -55,7 +55,7 @@ test('create a todo item with Login', async({page, request, context})=>{
     });
 
     const ResponseBody = await Response.json();
-    const access_token = ResponseBody.access_token; //each of these will be a cookie inside the "context.addcookies([])"
+    const access_token = ResponseBody.access_token;
     const firstName = ResponseBody.firstName;
     const userID = ResponseBody.userID;
     

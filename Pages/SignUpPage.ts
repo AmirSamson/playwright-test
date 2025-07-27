@@ -46,11 +46,11 @@ export default class SignUpPage{
     async signupUsingAPI(request: APIRequestContext, user:User, context: BrowserContext) {
         
         const response = await new UserAPI().signup(request, user);
-        const responseBody = await response.json();
-        const access_Token = responseBody.access_Token;
-        const first_name = responseBody.first_name;
-        const userID = responseBody.userID
 
+        const responseBody = await response.json();
+        const access_token = responseBody.access_token;
+        const firstName = responseBody.firstName;
+        const userID = responseBody.userID
 
     // user.setaccess_Token(access_Token);
     // user.setuserID(userID);
@@ -58,21 +58,20 @@ export default class SignUpPage{
 
     await context.addCookies([
         {
-            url: 'https://todo.qacart.com',
-            name: 'access_Token',
-            value: 'access_Token'
+            name: 'access_token',
+            value: access_token,
+            url: 'https://todo.qacart.com'
         },
         {
-            url: 'https://todo.qacart.com',
-            name: 'first_name',
-            value: 'first_name'
+            name: 'firstName',
+            value: firstName,
+            url: 'https://todo.qacart.com'
         },
         {
-            url: 'https://todo.qacart.com',
             name: 'userID',
-            value: 'userID'
+            value: userID,
+            url: 'https://todo.qacart.com'
         },
     ]);
-
-    }
+    };
 }
