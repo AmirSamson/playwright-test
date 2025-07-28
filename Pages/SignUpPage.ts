@@ -35,7 +35,7 @@ export default class SignUpPage{
     async Signup(page:Page){
             await page.type(this.firstnameInput, 'hey2');
             await page.type(this.lastnameInput, 'hey2');
-            await page.type(this.emailInput, '525@gmail.com');
+            await page.type(this.emailInput, '533@gmail.com');
             await page.type(this.passwordInput, '1234qwer@A');
             await page.type(this.passwordConfrim, '1234qwer@A');
             await page.click(this.SubmitButton);
@@ -60,17 +60,17 @@ export default class SignUpPage{
         {
             name: 'access_token',
             value: access_token,
-            url: 'https://todo.qacart.com'
+            url: 'http://todo.qacart.com'
         },
         {
             name: 'firstName',
             value: firstName,
-            url: 'https://todo.qacart.com'
+            url: 'http://todo.qacart.com'
         },
         {
             name: 'userID',
             value: userID,
-            url: 'https://todo.qacart.com'
+            url: 'http://todo.qacart.com'
         },
     ]);
     };

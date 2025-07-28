@@ -28,7 +28,7 @@ test('API call and Bearer Token usage for Register', async ({page, request, cont
     const user = new User(
         'zjlyd',
         'AAAAm',
-        'zjlyd29@gmail.com',
+        'zjlyd33@gmail.com',
         '1234qwer@A',
     );
 
@@ -42,39 +42,7 @@ test('API call and Bearer Token usage for Register', async ({page, request, cont
 
 
 //should add the register api for the SignUp.ts page in "Pages" folder
-test('Should be able to register', async({page, request, context})=>{
-
-    // const user = new User(
-    //     'hey2',
-    //     'hey2',
-    //     '520@gmail.com',
-    //     '1234qwer@A',
-    // );
-    
-    // const response = await new UserAPI().Login(request, user);
-
-    // const responseBody = await response.json();
-    // const access_Token = responseBody.access_token;
-    // const userID = responseBody.userID;
-    // const first_name = responseBody.first_name;
-
-    // await context.addCookies([
-    //      {
-    //         url: 'https://todo.qacart.com',
-    //         name: 'access_Token',
-    //         value: 'access_Token'
-    //     },
-    //     {
-    //         url: 'https://todo.qacart.com',
-    //         name: 'first_name',
-    //         value: 'first_name'
-    //     },
-    //     {
-    //         url: 'https://todo.qacart.com',
-    //         name: 'userID',
-    //         value: 'userID'
-    //     },
-    // ])
+test('Should be able to register', async({page})=>{
 
     const signUpPage = new SignUpPage()
     await signUpPage.LoadthePage(page);
