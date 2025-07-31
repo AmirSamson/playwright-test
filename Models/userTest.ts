@@ -19,10 +19,10 @@ export default class testingUser{
     }
 
     // we will need the Getters "get...(){}" to get the arguments to return them:
-    getFirtName(){ return this.firstName}
-    getLastName(){  return this.lastName}
-    getEmail(){ return this.email}
-    getPassword(){ return this.password}
+    getfirstName(){ return this.firstName}
+    getlastName(){  return this.lastName}
+    getemail(){ return this.email}
+    getpassword(){ return this.password}
 
     getaccess_token(){return this.access_token}
     setaccess_token(access_token:string){this.access_token = access_token}

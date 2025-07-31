@@ -1,7 +1,7 @@
 import { APIRequestContext } from "@playwright/test";
 import User from "../Models/user";
 
-export default class ToDoAPI{
+export default class TodoAPI{
 
     async addTodoAPI(request: APIRequestContext, user: User){
         await request.post('http://todo.qacart.com/api/v1/tasks', {
@@ -10,8 +10,8 @@ export default class ToDoAPI{
             item: 'This is a TEST',
         },
         headers: {
-            Authorization: `Bearer ${user.getaccess_Token()}`,
+            Authorization: `Bearer ${user.getaccess_token()}`,
         },
-    })
-    }
-}
+    });
+    };
+};

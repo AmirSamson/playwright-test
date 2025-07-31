@@ -6,19 +6,19 @@ export default class UserAPIsTest{
     async register(request: APIRequestContext, NewUser: testingUser){
         return await request.post('http://todo.qacart.com/api/v1/users/register', {
         data:{
-            firstName: NewUser.getFirtName(),
-            lastName: NewUser.getLastName(),
-            email: NewUser.getEmail(),
-            password:NewUser.getPassword(),
+            firstName: NewUser.getfirstName(),
+            lastName: NewUser.getlastName(),
+            email: NewUser.getemail(),
+            password:NewUser.getpassword(),
         },
     });
     };
 
     async Login(request: APIRequestContext, NewUser: testingUser){
-        return await request.post('https://todo.qacart.com/api/v1/users/login', {
+        return await request.post('http://todo.qacart.com/api/v1/users/login', {
             data:{
-                email: NewUser.getEmail(),
-                password: NewUser.getPassword(),
+                email: NewUser.getemail(),
+                password: NewUser.getpassword(),
             }
         });
     };
