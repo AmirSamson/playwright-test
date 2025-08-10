@@ -13,7 +13,7 @@ test('Register the user - removing API and adding the Models instead.', async({p
     const user = new User(
         'hey2', 
         'hey3', 
-        "538@gmail.com",
+        "539@gmail.com",
         '1234qwer@A',
     );
 
@@ -36,10 +36,9 @@ test('Adding a Todo item - using models.', async ({page, request, context})=>{
         '1234qwer@A',
     );
 
-    const loginRes = await new UserAPI().Login(request, user)
+    const loginResponse = await new UserAPI().Login(request, user)
 
-
-    const responseBodys = await loginRes.json();
+    const responseBodys = await loginResponse.json();
     const access_token = responseBodys.access_token;
     const firstName = responseBodys.firstName;
     const userID = responseBodys.userID;
@@ -59,8 +58,12 @@ test('Adding a Todo item - using models.', async ({page, request, context})=>{
         }
     ]);
 
-    await page.goto('https://todo.qacart.com/todo')
-    await new TodoAPI().addTodoAPI(request,user)
+    user.setaccess_token(access_token);
+    user.setuserID(userID);
+
+    await page.goto('http://todo.qacart.com/todo')
+    await new TodoAPI().addTodoAPI(request,user);
+    console.log(access_token, userID)
     await page.click('[data-testid=delete]');
     const noTodoMessages = page.locator('[data-testid=todo-item]')
     await expect(noTodoMessages).toBeVisible();

@@ -8,7 +8,7 @@ export default class SignUpPage{
 // we need to add the models of signUpPage and copy the code here to add a method in this Class:
 
     async LoadthePage(page: Page){
-            await page.goto('http://todo.qacart.com/signup');
+        await page.goto('http://todo.qacart.com/signup');
     }
 
     // we can define the locators as Attributes to this model:
@@ -52,9 +52,6 @@ export default class SignUpPage{
         const firstName = responseBody.firstName;
         const userID = responseBody.userID
 
-    // user.setaccess_Token(access_Token);
-    // user.setuserID(userID);
-    // console.log(access_Token, first_name, userID);
 
     await context.addCookies([
         {

@@ -3,15 +3,19 @@ import User from "../Models/user";
 
 export default class TodoAPI{
 
-    async addTodoAPI(request: APIRequestContext, user: User){
-        await request.post('http://todo.qacart.com/api/v1/tasks', {
-        data:{
+    async addTodoAPI(request: APIRequestContext, user: User) {
+    const response = await request.post('http://todo.qacart.com/api/v1/tasks', {
+        data: {
             isCompleted: false,
-            item: 'This is a TEST',
+            item: "Test for Amir",
         },
         headers: {
             Authorization: `Bearer ${user.getaccess_token()}`,
         },
     });
+    console.log('Add Todo status:', response.status());
+    const respBody = await response.json();
+    console.log('Add Todo response body:', respBody);
+    return response;
     };
 };
