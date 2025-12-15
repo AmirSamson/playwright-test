@@ -13,7 +13,7 @@ test('Register the user - removing API and adding the Models instead.', async({p
     const user = new User(
         'hey2', 
         'hey3', 
-        "539@gmail.com",
+        "521@gmail.com",
         '1234qwer@A',
     );
 
@@ -67,5 +67,4 @@ test('Adding a Todo item - using models.', async ({page, request, context})=>{
     await page.click('[data-testid=delete]');
     const noTodoMessages = page.locator('[data-testid=todo-item]')
     await expect(noTodoMessages).toBeVisible();
-
 })
