@@ -13,7 +13,7 @@ test('Register the user - removing API and adding the Models instead.', async({p
     const user = new User(
         'hey2', 
         'hey3', 
-        "521@gmail.com",
+        "522@gmail.com",
         '1234qwer@A',
     );
 
@@ -106,7 +106,6 @@ test('add 2 items and delete the first one created - using Models', async({page,
 
     await page.goto('http://todo.qacart.com/todo')
     await new TodoAPI().addTodoAPI(request,user);
-    console.log(access_token, userID)
     await page.reload();
     const previousTodoItem = page.getByTestId('todo-text').filter({hasText:'Test for Amir'});
     await expect(previousTodoItem).toBeVisible();
@@ -117,4 +116,52 @@ test('add 2 items and delete the first one created - using Models', async({page,
     await page.reload();
     await expect(anotherTodoMessage).toBeVisible();
     await expect(previousTodoItem).not.toBeVisible();
-})
+});
+
+test('adding a bunch of Todo items and deleting them all using a While Loop - using Models', async({page, request,context})=>{
+    
+    const user = new User(
+        'hey2', 
+        'hey3', 
+        '522@gmail.com',
+        '1234qwer@A',
+    )
+    const loginResponse = await new UserAPI().Login(request, user)
+    const responseBodys = await loginResponse.json();
+    const access_token = responseBodys.access_token;
+    const firstName = responseBodys.firstName;
+    const userID = responseBodys.userID;
+
+    await context.addCookies([
+        {   name: 'access_token', 
+            value: access_token, 
+            url: 'http://todo.qacart.com/'
+        },
+        {   name:'firstName', 
+            value:firstName, 
+            url: 'http://todo.qacart.com/' 
+        },
+        {   name:'userID', 
+            value:userID, 
+            url: 'http://todo.qacart.com/' 
+        }
+    ]);
+
+    user.setaccess_token(access_token);
+    user.setuserID(userID);
+    await page.goto('http://todo.qacart.com/todo')
+    const todoAPI = new TodoAPI();
+
+    for(let i=0; i<5; i++){
+        await todoAPI.addTodoAPI(request, user);
+    }
+
+    await page.reload();
+
+    const deletebutton = await page.getByTestId('delete')
+    while(await deletebutton.count()>0){
+        await deletebutton.first().click();
+    }
+    const noTodoMessages = page.getByTestId('no-todos')
+    await expect(noTodoMessages).toBeVisible();
+});
