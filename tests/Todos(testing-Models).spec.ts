@@ -64,7 +64,7 @@ test('Adding a Todo item - using models.', async ({page, request, context})=>{
     await page.goto('http://todo.qacart.com/todo')
     await new TodoAPI().addTodoAPI(request,user);
     console.log(access_token, userID)
-    await page.click('[data-testid=delete]');
-    const noTodoMessages = page.locator('[data-testid=todo-item]')
+    await page.click('[data-testid=delete]', {delay:100});
+    const noTodoMessages = page.getByTestId('no-todos')
     await expect(noTodoMessages).toBeVisible();
 })
