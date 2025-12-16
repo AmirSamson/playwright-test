@@ -21,7 +21,6 @@ test('Register the user - removing API and adding the Models instead.', async({p
     await signUpPage.signupUsingAPI(request, user, context); 
     await page.goto('http://todo.qacart.com/todo');
     await new TodoAPI().addTodoAPI(request, user);
-
 });
 
 
@@ -64,7 +63,58 @@ test('Adding a Todo item - using models.', async ({page, request, context})=>{
     await page.goto('http://todo.qacart.com/todo')
     await new TodoAPI().addTodoAPI(request,user);
     console.log(access_token, userID)
-    await page.click('[data-testid=delete]', {delay:100});
+    await page.reload();
+    await page.click('[data-testid=delete]');
     const noTodoMessages = page.getByTestId('no-todos')
     await expect(noTodoMessages).toBeVisible();
+})
+
+
+test('add 2 items and delete the first one created - using Models', async({page, request, context})=>{
+
+    const user = new User(
+        'hey2', 
+        'hey3', 
+        '521@gmail.com',
+        '1234qwer@A',
+    );
+
+    const loginResponse = await new UserAPI().Login(request, user)
+
+    const responseBodys = await loginResponse.json();
+    const access_token = responseBodys.access_token;
+    const firstName = responseBodys.firstName;
+    const userID = responseBodys.userID;
+
+    await context.addCookies([
+        {   name: 'access_token', 
+            value: access_token, 
+            url: 'http://todo.qacart.com/'
+        },
+        {   name:'firstName', 
+            value:firstName, 
+            url: 'http://todo.qacart.com/' 
+        },
+        {   name:'userID', 
+            value:userID, 
+            url: 'http://todo.qacart.com/' 
+        }
+    ]);
+
+    user.setaccess_token(access_token);
+    user.setuserID(userID);
+
+    await page.goto('http://todo.qacart.com/todo')
+    await new TodoAPI().addTodoAPI(request,user);
+    console.log(access_token, userID)
+    await page.reload();
+    const previousTodoItem = page.getByTestId('todo-text').filter({hasText:'Test for Amir'});
+    await expect(previousTodoItem).toBeVisible();
+    const previousItemForDelete = previousTodoItem.locator('..'); //this means: “Start from the element I already found, then go one level up in the DOM tree.”
+    await previousItemForDelete.getByTestId('delete').click();
+    await new TodoAPI().addAnotherTodo(request,user);
+    const anotherTodoMessage = page.getByTestId('todo-text').filter({hasText:'new todo / Samson'});
+    await page.reload();
+    await expect(anotherTodoMessage).toBeVisible();
+    await expect(previousTodoItem).not.toBeVisible();
 })
