@@ -13,7 +13,7 @@ test('Register the user - removing API and adding the Models instead.', async({p
     const user = new User(
         'hey2', 
         'hey3', 
-        "522@gmail.com",
+        "524@gmail.com",
         '1234qwer@A',
     );
 
