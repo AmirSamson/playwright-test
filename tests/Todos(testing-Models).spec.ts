@@ -3,6 +3,7 @@ import User from "../Models/user";
 import SignUpPage from "../Pages/SignUpPage";
 import TodoAPI from "../APIs/Todos";
 import UserAPI from "../APIs/UserAPI";
+import { count } from "console";
 
 // test.use({
 //     baseURL: 'http://todo.qacart.com/'
@@ -151,14 +152,8 @@ test('adding a bunch of Todo items and deleting them all using a While Loop - us
     user.setuserID(userID);
     await page.goto('http://todo.qacart.com/todo')
     const todoAPI = new TodoAPI();
-    for(let i=0; i<5; i++){
-        await todoAPI.addTodoAPI(request, user);
-    }
-    await page.reload();
-    const deletebutton = await page.getByTestId('delete')
-    while(await deletebutton.count()>0){
-        await deletebutton.first().click();
-    }
+    await todoAPI.addMutlipleTodos(5,request,page,user)
+    await todoAPI.deleteMultipleTodos(page);
     const noTodoMessages = page.getByTestId('no-todos')
     await expect(noTodoMessages).toBeVisible();
 });
