@@ -46,10 +46,9 @@ export default class TodoAPI{
     }
 
     async deleteMultipleTodos(page:Page){
-        
-        const deletebutton = await page.getByTestId('delete')
-            while( await deletebutton.count() > 0 ) {
-                await deletebutton.first().click();
+            
+            while( await page.getByTestId('delete').count() > 0 ) {
+                await page.getByTestId('delete').first().click({delay:200});
         }
     }
 };

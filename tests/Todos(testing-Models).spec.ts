@@ -155,5 +155,6 @@ test('adding a bunch of Todo items and deleting them all using a While Loop - us
     await todoAPI.addMutlipleTodos(5,request,page,user)
     await todoAPI.deleteMultipleTodos(page);
     const noTodoMessages = page.getByTestId('no-todos')
-    await expect(noTodoMessages).toBeVisible();
+    await expect(noTodoMessages).toBeVisible()
+    await expect(noTodoMessages).toHaveText('No Available Todos');
 });
